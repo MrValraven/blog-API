@@ -1,7 +1,11 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const blogPostSchema = new mongoose.Schema({
     title: {
+        type: String,
+        required: true
+    },
+    imageLink: {
         type: String,
         required: true
     },
@@ -19,4 +23,4 @@ const blogPostSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('BlogPost', blogPostSchema)
+module.exports = mongoose.model('Blogpost', blogPostSchema)

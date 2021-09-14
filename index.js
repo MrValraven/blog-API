@@ -1,10 +1,11 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
 
 // Middleware
+const authenticateToken = require('./validation/verifyToken');
 app.use(express.json());
 
 // Connect to Database
@@ -14,9 +15,15 @@ mongoose.connect(uri,{ useNewUrlParser: true}, () => {
   console.log("connected to db")
 })
 
-const authRoute = require('./routes/auh');
-
+const authRoute = require('./routes/auth');
 app.use('/api/user', authRoute);
+
+const postsRoute = require('./routes/posts');
+app.use('/api', postsRoute);
+
+app.get('/', (req, res) => {
+  res.send("Hello");
+})
 
 const PORT = 3000 || process.env.PORT;
 
