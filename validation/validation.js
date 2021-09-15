@@ -40,6 +40,7 @@ const blogpostValidation = async (data) => {
     const schema = Joi.object({
         title: Joi.string().required(),
         category: Joi.array().required(),
+        categoryColor: Joi.string().required(),
         imageLink: Joi.string().required(),
         paragraphs: Joi.array().required(),
         date: Joi.string().required(),

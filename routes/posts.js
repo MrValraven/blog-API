@@ -49,6 +49,7 @@ router.post('/createBlogpost', async (req, res) => {
      const blogpost = new Blogpost({
         title: req.body.title,
         category: req.body.category,
+        categoryColor: req.body.categoryColor,
         date: req.body.date,
         imageLink: req.body.imageLink,
         paragraphs: req.body.paragraphs,

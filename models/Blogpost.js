@@ -9,6 +9,10 @@ const blogPostSchema = new mongoose.Schema({
         type: Array,
         required: true
     },
+    categoryColor: {
+        type: String,
+        required: true
+    },
     imageLink: {
         type: String,
         required: true
