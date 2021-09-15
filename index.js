@@ -1,8 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors')
 dotenv.config();
 const app = express();
+
+app.use(cors(
+  { 
+      origin: ['https://www.aaue.pt', 'https://aaue.vercel.app'],
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allowedHeaders: ['Content-Type', 'auth-token'],
+      optionsSuccessStatus: 200
+  }));
+  
+app.options('*', cors())
 
 // Middleware
 const authenticateToken = require('./validation/verifyToken');
@@ -20,10 +31,6 @@ app.use('/api/user', authRoute);
 
 const postsRoute = require('./routes/posts');
 app.use('/api', authenticateToken, postsRoute);
-
-app.get('/', (req, res) => {
-  res.send("Hello");
-})
 
 const PORT = process.env.PORT || 3000  ;
 
