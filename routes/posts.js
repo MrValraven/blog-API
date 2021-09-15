@@ -29,6 +29,18 @@ router.get('/getAllBlogpostTitles', async (req, res) => {
     res.send(blogpostTitles);
 });
 
+router.get('/getBlogpost', async (req, res) => {
+
+    const blogpost = await Blogpost.findOne({title: req.body.title});
+
+    if(!blogpost) {
+        return res.status(400).send("Error! Blogpost doesn't exist");
+    }
+
+    res.send(blogpost);
+
+})
+
 router.post('/createBlogpost', async (req, res) => {
 
     blogpostValidation(req.body);
