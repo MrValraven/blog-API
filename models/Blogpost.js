@@ -5,6 +5,10 @@ const blogPostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    category: {
+        type: Array,
+        required: true
+    },
     imageLink: {
         type: String,
         required: true

@@ -19,7 +19,7 @@ const authRoute = require('./routes/auth');
 app.use('/api/user', authRoute);
 
 const postsRoute = require('./routes/posts');
-app.use('/api', postsRoute);
+app.use('/api', authenticateToken, postsRoute);
 
 app.get('/', (req, res) => {
   res.send("Hello");

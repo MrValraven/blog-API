@@ -36,6 +36,7 @@ router.post('/createBlogpost', async (req, res) => {
      // Create new blogpost
      const blogpost = new Blogpost({
         title: req.body.title,
+        category: req.body.category,
         date: req.body.date,
         imageLink: req.body.imageLink,
         paragraphs: req.body.paragraphs,
@@ -50,5 +51,21 @@ router.post('/createBlogpost', async (req, res) => {
         res.status(400).send(error)
     }
 })
+
+router.delete('/deleteBlogpost', async (req, res) => {
+
+    const blogpost = await Blogpost.findOne({title: req.body.title})
+
+    if(!blogpost) {
+        return res.status(400).send("Error! Blogpost doesn't exist");
+    }
+
+    try {
+        const removedBlogpost = await blogpost.remove();
+        res.send({message: "Blogpost deleted!"})
+    } catch (error) {
+        res.status(400).send(error)
+    }
+});
 
 module.exports = router;
