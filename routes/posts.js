@@ -63,7 +63,23 @@ router.post('/createBlogpost', async (req, res) => {
     } catch (error) {
         res.status(400).send(error)
     }
-})
+});
+
+router.put('/updateBlogpost'), async (req, res) => {
+
+    const blogpost = await Blogpost.findOne({title: req.body.title})
+
+    if(!blogpost) {
+        return res.status(400).send("Error! Blogpost doesn't exist");
+    }
+
+    try {
+        const updatedBlogpost = await Blogpost.updateOne();
+        res.send(updatedBlogpost)
+    } catch (error) {
+        res.status(400).send({message: error})
+    }
+}
 
 router.delete('/deleteBlogpost', async (req, res) => {
 
