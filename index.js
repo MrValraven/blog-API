@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors(
   { 
-      origin: ['https://www.aaue.pt', 'https://aaue.vercel.app'],
+      origin: ['https://www.aaue.pt', 'https://aaue.vercel.app', 'http://localhost:8080'],
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowedHeaders: ['Content-Type', 'auth-token'],
       optionsSuccessStatus: 200
