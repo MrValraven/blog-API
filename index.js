@@ -9,7 +9,7 @@ app.use(cors(
   { 
       origin: ['https://www.aaue.pt', 'https://aaue.vercel.app', 'http://localhost:8080'],
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      allowedHeaders: ['Content-Type', 'auth-token'],
+      allowedHeaders: '*',
       optionsSuccessStatus: 200
   }));
   
