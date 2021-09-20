@@ -30,7 +30,7 @@ router.get('/getAllBlogpostTitles', async (req, res) => {
 
 router.get('/getBlogpost/:id', async (req, res) => {
 
-    const blogpost = await Blogpost.findOne({id: req.params});
+    const blogpost = await Blogpost.findOne({_id: req.params.id});
 
     if(!blogpost) {
         return res.status(400).send("Error! Blogpost doesn't exist");
