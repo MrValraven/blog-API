@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const authenticateToken = (req, res, next) => {
     const token = req.body.token;
     if(!token) {
-        return res.status(401).send("Acess denied");
+        return res.status(401).send({message: "Acess denied"});
     }
 
     try {
@@ -11,7 +11,7 @@ const authenticateToken = (req, res, next) => {
         req.user = verified;
         next();
     } catch (error) {
-        res.status(400).send("Invalid auth token");
+        res.status(400).send({message: "Invalid auth token"});
     }
 }
 

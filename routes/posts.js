@@ -61,7 +61,7 @@ router.post('/createBlogpost', async (req, res) => {
         const savedBlogpost = await blogpost.save();
         res.send({message: "Blog post added!"});
     } catch (error) {
-        res.status(400).send(error)
+        res.status(400).send({message: error})
     }
 });
 
