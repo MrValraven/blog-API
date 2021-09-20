@@ -16,7 +16,6 @@ app.use(cors(
 app.options('*', cors())
 
 // Middleware
-const authenticateToken = require('./validation/verifyToken');
 app.use(express.json());
 
 // Connect to Database
@@ -30,7 +29,7 @@ const authRoute = require('./routes/auth');
 app.use('/api/user', authRoute);
 
 const postsRoute = require('./routes/posts');
-app.use('/api', authenticateToken, postsRoute);
+app.use('/api', postsRoute);
 
 const PORT = process.env.PORT || 3000  ;
 

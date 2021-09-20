@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Blogpost = require('../models/Blogpost');
 const { blogpostValidation } = require('../validation/validation')
 const { getAllBlogpostTitles } = require('../functions/blogFunctions')
+const authenticateToken = require('./validation/verifyToken');
 
 router.get('/getAllBlogposts', async (req, res) => {
 
@@ -41,7 +42,7 @@ router.get('/getBlogpost', async (req, res) => {
 
 })
 
-router.post('/createBlogpost', async (req, res) => {
+router.post('/createBlogpost', authenticateToken, async (req, res) => {
 
     blogpostValidation(req.body);
 
@@ -65,7 +66,7 @@ router.post('/createBlogpost', async (req, res) => {
     }
 });
 
-router.put('/updateBlogpost'), async (req, res) => {
+router.put('/updateBlogpost'), authenticateToken, async (req, res) => {
 
     const blogpost = await Blogpost.findOne({title: req.body.title})
 
@@ -81,7 +82,7 @@ router.put('/updateBlogpost'), async (req, res) => {
     }
 }
 
-router.delete('/deleteBlogpost', async (req, res) => {
+router.delete('/deleteBlogpost', authenticateToken, async (req, res) => {
 
     const blogpost = await Blogpost.findOne({title: req.body.title})
 
