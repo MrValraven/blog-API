@@ -1,48 +1,8 @@
 const router = require('express').Router();
 const Blogpost = require('../models/Blogpost');
 const { blogpostValidation } = require('../validation/validation')
-const { getAllBlogpostTitles } = require('../functions/blogFunctions')
-const authenticateToken = require('./validation/verifyToken');
 
-router.get('/getAllBlogposts', async (req, res) => {
-
-    const blogposts = await Blogpost.find({})
-
-    if(!blogposts) {
-        return res.status(400).send("Error! No blogposts available");
-    }
-
-    res.send(blogposts);
-});
-
-router.get('/getAllBlogpostTitles', async (req, res) => {
-
-    const blogposts = await Blogpost.find({})
-
-    if(!blogposts) {
-        return res.status(400).send("Error! No blogposts available");
-    }
-
-    let blogpostTitles = [];
-
-    getAllBlogpostTitles(blogposts, blogpostTitles);
-
-    res.send(blogpostTitles);
-});
-
-router.get('/getBlogpost', async (req, res) => {
-
-    const blogpost = await Blogpost.findOne({title: req.body.title});
-
-    if(!blogpost) {
-        return res.status(400).send("Error! Blogpost doesn't exist");
-    }
-
-    res.send(blogpost);
-
-})
-
-router.post('/createBlogpost', authenticateToken, async (req, res) => {
+router.post('/createBlogpost', async (req, res) => {
 
     blogpostValidation(req.body);
 
@@ -66,7 +26,7 @@ router.post('/createBlogpost', authenticateToken, async (req, res) => {
     }
 });
 
-router.put('/updateBlogpost'), authenticateToken, async (req, res) => {
+router.put('/updateBlogpost'), async (req, res) => {
 
     const blogpost = await Blogpost.findOne({title: req.body.title})
 
@@ -82,7 +42,7 @@ router.put('/updateBlogpost'), authenticateToken, async (req, res) => {
     }
 }
 
-router.delete('/deleteBlogpost', authenticateToken, async (req, res) => {
+router.delete('/deleteBlogpost', async (req, res) => {
 
     const blogpost = await Blogpost.findOne({title: req.body.title})
 
