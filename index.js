@@ -30,7 +30,7 @@ const authRoute = require('./routes/auth');
 app.use('/api/user', authRoute);
 
 const postsRoute = require('./routes/posts');
-app.use('/api',authenticateToken, postsRoute);
+app.use('/api', postsRoute);
 
 const getPostsRoute = require('./routes/getPosts');
 app.use('/api', getPostsRoute);
