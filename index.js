@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const cors = require('cors')
-dotenv.config();
+const cors = require('cors');
 const app = express();
+dotenv.config();
 
 app.use(cors(
   { 
@@ -34,6 +34,9 @@ app.use('/api/admin', authenticateToken, postsRoute);
 
 const getPostsRoute = require('./routes/getPosts');
 app.use('/api', getPostsRoute);
+
+const emailRoute = require('./routes/email');
+app.use('/api', emailRoute);
 
 const PORT = process.env.PORT || 3000  ;
 
