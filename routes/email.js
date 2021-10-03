@@ -13,8 +13,6 @@ router.post("/sendEmail", async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: "Invalid parameters" });
   }
-
-  console.log(sendResult);
 });
 
 module.exports = router;
