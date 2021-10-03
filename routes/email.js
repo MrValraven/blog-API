@@ -9,7 +9,11 @@ router.post("/sendEmail", async (req, res) => {
   try {
     let sendResult = await sendEmail(sendTo, subject, message);
 
-    res.status(200).json({ message: "Email sent sucessfully" });
+    if (sendResult) {
+      res.status(200).json({ message: "Email sent sucessfully" });
+    }
+
+    res.status(400).json({ message: "Invalid email credentials" });
   } catch (error) {
     res.status(400).json({ message: "Invalid parameters" });
   }

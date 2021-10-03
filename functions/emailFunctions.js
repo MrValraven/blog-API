@@ -15,8 +15,12 @@ const sendEmail = async (sendTo, subject, message) => {
       from: "AAUE <informativa@aaue.pt",
       to: sendTo,
       subject: subject,
-      text: message,
-      html: `<body><p>${message}</p></body>`,
+      html: `<body>
+        <h1>Enviado pelo formulário de contacto em ${message.origem}</h1>
+        <p>Nome: ${message.name}</p>
+        <p>Email: ${message.email}</p>
+        <p>Mensagem: ${message.text}</p>
+      </body>`,
     });
   } catch (error) {
     console.log(error);
