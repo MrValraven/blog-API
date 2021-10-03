@@ -22,6 +22,8 @@ const sendEmail = async (sendTo, subject, message) => {
         <p>Mensagem: ${message.text}</p>
       </body>`,
     });
+
+    return true;
   } catch (error) {
     console.log(error);
   }

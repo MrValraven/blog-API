@@ -8,9 +8,10 @@ router.post("/sendEmail", async (req, res) => {
 
   try {
     let sendResult = await sendEmail(sendTo, subject, message);
-    console.log(sendResult);
 
-    res.status(200).json({ message: "Email sent sucessfully" });
+    if (sendResult) {
+      res.status(200).json({ message: "Email sent sucessfully" });
+    }
   } catch (error) {
     res.status(400).json({ message: "Invalid parameters" });
   }
