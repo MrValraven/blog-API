@@ -9,13 +9,13 @@ router.post("/createBlogpost", async (req, res) => {
   const todaysDate = new Date();
   let seconds = todaysDate.getSeconds();
   let minutes = todaysDate.getMinutes();
-  let day = todaysDate.getDay();
+  let day = todaysDate.getDate();
   let month = getCurrentMonth(todaysDate.getMonth());
   let year = todaysDate.getFullYear();
 
   const date = `${day} de ${month}, ${year}`;
   let createdAt = `${year}${month}${day}${minutes}${seconds}`;
-  createdAt = Number(createdAt);
+  createdAt = parseInt(createdAt);
 
   // Create new blogpost
   const blogpost = new Blogpost({
