@@ -8,7 +8,7 @@ const getAllBlogpostTitles = (blogposts, blogpostTitles) => {
 };
 
 const getCurrentMonth = (month) => {
-  let month = +1; // O valor é incrementado por motivos de logica, visto que Janeiro = 0
+  month++; // O valor é incrementado por motivos de logica, visto que Janeiro = 0
   switch (month) {
     case 1:
       return "Janeiro";
