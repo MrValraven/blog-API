@@ -1,61 +1,66 @@
-const router = require('express').Router();
-const Blogpost = require('../models/Blogpost');
-const { blogpostValidation } = require('../validation/validation')
+const router = require("express").Router();
+const Blogpost = require("../models/Blogpost");
+const { blogpostValidation } = require("../validation/validation");
 
-router.post('/createBlogpost', async (req, res) => {
+router.post("/createBlogpost", async (req, res) => {
+  blogpostValidation(req.body);
 
-    blogpostValidation(req.body);
+  const todaysDate = new Date();
 
-     // Create new blogpost
-     const blogpost = new Blogpost({
-        title: req.body.title,
-        category: req.body.category,
-        categoryColor: req.body.categoryColor,
-        date: req.body.date,
-        imageLink: req.body.imageLink,
-        paragraphs: req.body.paragraphs,
-        signature: req.body.signature,
-    });
+  const date = `${todaysDate.getDay} de ${getCurrentMonth(
+    todays.getMonth()
+  )}, ${todaysDate.getFullYear}`;
 
-    try {
-        //Save blogpost in Database
-        const savedBlogpost = await blogpost.save();
-        res.send({message: "Blog post added!"});
-    } catch (error) {
-        res.status(400).send({message: error})
-    }
+  // Create new blogpost
+  const blogpost = new Blogpost({
+    title: req.body.title,
+    category: req.body.category,
+    categoryColor: req.body.categoryColor,
+    date: date,
+    createdAt: todaysDate,
+    imageLink: req.body.imageLink,
+    paragraphs: req.body.paragraphs,
+    signature: req.body.signature,
+  });
+
+  try {
+    //Save blogpost in Database
+    const savedBlogpost = await blogpost.save();
+    res.send({ message: "Blog post added!" });
+  } catch (error) {
+    res.status(400).send({ message: error });
+  }
 });
 
-router.put('/updateBlogpost'), async (req, res) => {
+router.put("/updateBlogpost"),
+  async (req, res) => {
+    const blogpost = await Blogpost.findOne({ title: req.body.title });
 
-    const blogpost = await Blogpost.findOne({title: req.body.title})
-
-    if(!blogpost) {
-        return res.status(400).send("Error! Blogpost doesn't exist");
+    if (!blogpost) {
+      return res.status(400).send("Error! Blogpost doesn't exist");
     }
 
     try {
-        const updatedBlogpost = await Blogpost.updateOne();
-        res.send(updatedBlogpost)
+      const updatedBlogpost = await Blogpost.updateOne();
+      res.send(updatedBlogpost);
     } catch (error) {
-        res.status(400).send({message: error})
+      res.status(400).send({ message: error });
     }
-}
+  };
 
-router.delete('/deleteBlogpost', async (req, res) => {
+router.delete("/deleteBlogpost", async (req, res) => {
+  const blogpost = await Blogpost.findOne({ title: req.body.title });
 
-    const blogpost = await Blogpost.findOne({title: req.body.title})
+  if (!blogpost) {
+    return res.status(400).send("Error! Blogpost doesn't exist");
+  }
 
-    if(!blogpost) {
-        return res.status(400).send("Error! Blogpost doesn't exist");
-    }
-
-    try {
-        const removedBlogpost = await blogpost.remove();
-        res.send({message: "Blogpost deleted!"})
-    } catch (error) {
-        res.status(400).send(error)
-    }
+  try {
+    const removedBlogpost = await blogpost.remove();
+    res.send({ message: "Blogpost deleted!" });
+  } catch (error) {
+    res.status(400).send(error);
+  }
 });
 
 module.exports = router;
