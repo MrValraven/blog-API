@@ -45,8 +45,6 @@ app.use("/api", emailRoute);
 
 const PORT = process.env.PORT || 3000;
 
-const { getCurrentMonth } = require("./functions/blogFunctions");
-
 app.listen(PORT, () => {
   console.log("app is live");
 });

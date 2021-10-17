@@ -1,35 +1,20 @@
 const router = require("express").Router();
 const Blogpost = require("../models/Blogpost");
-const { getCurrentMonth } = require("../functions/blogFunctions");
+const { createCurrentDate } = require("../functions/blogFunctions");
 const { blogpostValidation } = require("../validation/validation");
 
 router.post("/createBlogpost", async (req, res) => {
   blogpostValidation(req.body);
 
-  const todaysDate = new Date();
-  let seconds = todaysDate.getSeconds();
-  let minutes = todaysDate.getMinutes();
-  let hours = todaysDate.getHours();
-  let day = todaysDate.getDate();
-  let month = todaysDate.getMonth();
-  let year = todaysDate.getFullYear();
-
-  const date = `${day} de ${getCurrentMonth(month)}, ${year}`;
-
-  if (month < 9) {
-    month = `0${month}`;
-  }
-
-  let createdAt = `${year}${month + 1}${day}${hours}${minutes}${seconds}`;
-  createdAt = parseInt(createdAt);
+  const todaysDate = createCurrentDate();
 
   // Create new blogpost
   const blogpost = new Blogpost({
     title: req.body.title,
     category: req.body.category,
     categoryColor: req.body.categoryColor,
-    date: date,
-    createdAt: createdAt,
+    date: todaysDate.date,
+    createdAt: parseInt(todaysDate.createdAt),
     imageLink: req.body.imageLink,
     paragraphs: req.body.paragraphs,
     signature: req.body.signature,
