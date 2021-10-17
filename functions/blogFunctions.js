@@ -34,6 +34,7 @@ const createCurrentDate = () => {
 
 function makeSingleDigitsIntoTwoDigits(digit) {
   if (digit < 10) return `0${digit}`;
+  else return digit;
 }
 
 function getCurrentMonth(month) {
