@@ -11,11 +11,16 @@ router.post("/createBlogpost", async (req, res) => {
   let minutes = todaysDate.getMinutes();
   let hours = todaysDate.getHours();
   let day = todaysDate.getDate();
-  let month = todaysDate.getMonth() + 1;
+  let month = todaysDate.getMonth();
   let year = todaysDate.getFullYear();
 
   const date = `${day} de ${getCurrentMonth(month)}, ${year}`;
-  let createdAt = `${year}${month}${day}${hours}${minutes}${seconds}`;
+
+  if (month < 9) {
+    month = `0${month}`;
+  }
+
+  let createdAt = `${year}${month + 1}${day}${hours}${minutes}${seconds}`;
   createdAt = parseInt(createdAt);
 
   // Create new blogpost
