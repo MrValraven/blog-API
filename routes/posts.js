@@ -7,10 +7,15 @@ router.post("/createBlogpost", async (req, res) => {
   blogpostValidation(req.body);
 
   const todaysDate = new Date();
+  let seconds = todaysDate.getSeconds();
+  let minutes = todaysDate.getMinutes();
+  let day = todaysDate.getDay();
+  let month = getCurrentMonth(todaysDate.getMonth());
+  let year = todaysDate.getFullYear();
 
-  const date = `${todaysDate.getDay} de ${getCurrentMonth(
-    todaysDate.getMonth()
-  )}, ${todaysDate.getFullYear}`;
+  const date = `${day} de ${month}, ${year}`;
+  let createdAt = `${year}${month}${day}${minutes}${seconds}`;
+  createdAt = Number(createdAt);
 
   // Create new blogpost
   const blogpost = new Blogpost({
@@ -18,7 +23,7 @@ router.post("/createBlogpost", async (req, res) => {
     category: req.body.category,
     categoryColor: req.body.categoryColor,
     date: date,
-    createdAt: todaysDate,
+    createdAt: createdAt,
     imageLink: req.body.imageLink,
     paragraphs: req.body.paragraphs,
     signature: req.body.signature,
