@@ -9,7 +9,7 @@ router.post("/createBlogpost", async (req, res) => {
   const todaysDate = new Date();
 
   const date = `${todaysDate.getDay} de ${getCurrentMonth(
-    todays.getMonth()
+    todaysDate.getMonth()
   )}, ${todaysDate.getFullYear}`;
 
   // Create new blogpost
