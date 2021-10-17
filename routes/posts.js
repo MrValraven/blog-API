@@ -11,7 +11,7 @@ router.post("/createBlogpost", async (req, res) => {
   let minutes = todaysDate.getMinutes();
   let hours = todaysDate.getHours();
   let day = todaysDate.getDate();
-  let month = todaysDate.getMonth();
+  let month = todaysDate.getMonth() + 1;
   let year = todaysDate.getFullYear();
 
   const date = `${day} de ${getCurrentMonth(month)}, ${year}`;
