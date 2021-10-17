@@ -9,6 +9,7 @@ router.post("/createBlogpost", async (req, res) => {
   const todaysDate = new Date();
   let seconds = todaysDate.getSeconds();
   let minutes = todaysDate.getMinutes();
+  let hours = todaysDate.getHours();
   let day = todaysDate.getDate();
   let month = todaysDate.getMonth();
   let year = todaysDate.getFullYear();
