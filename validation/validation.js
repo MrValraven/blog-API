@@ -12,7 +12,7 @@ const registerValidation = async (data) => {
     const validation = await schema.validateAsync(data);
     return validation;
   } catch (error) {
-    res.send(error.details[0].message);
+    return error.details[0].message;
   }
 };
 
@@ -27,7 +27,7 @@ const loginValidation = async (data) => {
     const validation = await schema.validateAsync(data);
     return validation;
   } catch (error) {
-    res.send(error.details[0].message);
+    return error.details[0].message;
   }
 };
 //Blogpost Validation
@@ -45,7 +45,7 @@ const blogpostValidation = async (data) => {
     const validation = await schema.validateAsync(data);
     return validation;
   } catch (error) {
-    res.send(error.details[0].message);
+    return error.details[0].message;
   }
 };
 
