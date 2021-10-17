@@ -26,7 +26,7 @@ const blogPostSchema = new mongoose.Schema({
     required: true,
   },
   createdAt: {
-    type: String,
+    type: Number,
     required: true,
   },
   signature: {
