@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Blogpost = require("../models/Blogpost");
+const { getCurrentMonth } = require("../functions/blogFunctions");
 const { blogpostValidation } = require("../validation/validation");
 
 router.post("/createBlogpost", async (req, res) => {
