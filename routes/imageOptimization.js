@@ -8,5 +8,8 @@ fs.readFile(fileName, (err, sourceData) => {
   tinify.fromBuffer(sourceData).toBuffer((err, resultData) => {
     if (err) throw err;
     // ...
+    else {
+      res.send({ message: "sucess" });
+    }
   });
 });
