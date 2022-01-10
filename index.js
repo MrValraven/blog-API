@@ -8,6 +8,7 @@ dotenv.config();
 app.use(
   cors({
     origin: [
+      "https://aaue.pt",
       "https://www.aaue.pt",
       "https://aaue.vercel.app",
       "http://localhost:8080",
