@@ -12,7 +12,7 @@ const sendEmail = async (sendTo, subject, message) => {
 
   try {
     await smtptransport.sendMail({
-      from: "AAUE <informativa@aaue.pt",
+      from: "AAUE <informatica@aaue.pt",
       to: sendTo,
       subject: subject,
       html: `<body>
