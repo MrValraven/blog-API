@@ -8,6 +8,7 @@ dotenv.config();
 app.use(
   cors({
     origin: [
+      "https://aaue.pt",
       "https://www.aaue.pt",
       "https://www.desporto.aaue.pt",
       "https://aaue.pt",
