@@ -9,12 +9,11 @@ app.use(
   cors({
     origin: [
       "https://aaue.pt",
+      "https://desporto.aaue.pt",
       "https://www.aaue.pt",
       "https://www.desporto.aaue.pt",
-      "https://aaue.pt",
-      "https://desporto.aaue.pt",
-      "https://torneioreitor.vercel.app",
       "https://aaue.vercel.app",
+      "https://torneioreitor.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: "*",
