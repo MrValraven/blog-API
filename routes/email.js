@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { sendEmail } = require("../functions/emailFunctions");
 
 router.post("/sendEmail", async (req, res) => {
-  const sendTo = req.body.sendTo;
+  const sendTo = req.body.sendTo; //geral@aaue.pt
   const subject = req.body.subject;
   const message = req.body.message;
 
